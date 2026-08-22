@@ -1552,7 +1552,8 @@ function applyLang(){
   });
 }
 
-const API = 'http://localhost:3000/api';
+const API_ROOT = window.location.origin;
+const API = `${API_ROOT}/api`;
 
 // ─── تسجيل مستخدم جديد ───────────────────────────────────────
 async function handleRegister() {
@@ -1669,7 +1670,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     btn.addEventListener('click', toggleLang);
   });
   // تحديث عدد الدورات في الـ badge عند تحميل الصفحة لأول مرة
-  fetch('http://localhost:3000/api/courses')
+  fetch(`${API}/courses`)
     .then(r => r.json())
     .then(courses => {
       const total = 6 + (courses ? courses.length : 0);
@@ -1943,7 +1944,7 @@ function playVideo(filename, title, course) {
   const player = document.getElementById('lesson-video-player');
   const empty  = document.getElementById('lesson-video-empty');
   if (player) {
-    player.src = `http://localhost:3000/uploads/${filename}`;
+    player.src = `${API_ROOT}/uploads/${filename}`;
     player.style.display = 'block';
     player.load();
     player.play().catch(()=>{});
