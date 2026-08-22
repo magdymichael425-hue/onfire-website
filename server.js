@@ -5,7 +5,7 @@ const cors    = require('cors');
 const multer  = require('multer');
 const path    = require('path');
 const fs      = require('fs');
-require('dotenv').config();
+if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
 const db  = require('./db');
 const app = express();
